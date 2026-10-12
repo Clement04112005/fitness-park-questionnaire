@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Étude universitaire — Abonnement salle de sport</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--text:#16181b;--muted:#626873;--border:#d8dce2;--accent:#111}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+main{max-width:760px;margin:auto;padding:20px 12px 48px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:15px}
+h1{font-size:27px;line-height:1.2;margin:0 0 10px}h2{font-size:20px;margin:0 0 14px}h3{font-size:17px}
+.muted{color:var(--muted);font-size:14px}.q{margin:20px 0}.q-title{display:block;font-weight:700;margin-bottom:9px}
+.option{display:flex;gap:9px;align-items:flex-start;padding:7px 0}.option input{margin-top:5px}
+input[type=number]{width:100%;padding:11px;border:1px solid var(--border);border-radius:8px;font-size:16px}
+.offer{background:#fafafa;border:1px solid var(--border);border-radius:10px;padding:16px}.offer li{margin:7px 0}
+.grid{display:grid;grid-template-columns:1fr 80px 80px;gap:8px;align-items:center}.grid .head{font-weight:700}
+.grid label{text-align:center}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale label{border:1px solid var(--border);border-radius:8px;text-align:center;padding:8px;cursor:pointer}.scale input{display:block;margin:0 auto 4px}
+button{background:var(--accent);color:#fff;border:0;border-radius:9px;padding:12px 18px;font-size:16px;cursor:pointer}button:disabled{opacity:.55}
+.error{display:none;background:#fff1f1;color:#8b0000;border:1px solid #e0aaaa;border-radius:8px;padding:10px;margin-top:12px}
+.hidden{display:none!important}@media(max-width:520px){.scale{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 60px 60px}}
+</style>
+</head>
+<body>
+<main>
+<form id="survey" novalidate>
+<section class="card">
+<h1>Étude universitaire sur le prix d’un abonnement à une salle de sport</h1>
+<p>Dans le cadre d’une étude universitaire en marketing, nous cherchons à comprendre la perception et le prix acceptable d’une offre d’abonnement à une salle de sport.</p>
+<p>Le questionnaire est anonyme et prend environ <strong>4 à 5 minutes</strong>.</p>
+<p>Il n’y a pas de bonne ou de mauvaise réponse : nous cherchons simplement à connaître votre perception personnelle.</p>
+<p>Merci pour votre participation !</p>
+</section>
+
+<section class="card">
+<h2>1. Votre pratique du sport</h2>
+<div class="q"><span class="q-title">Q1. Quel âge avez-vous ?</span>
+<label class="option"><input required type="radio" name="age" value="<18">Moins de 18 ans</label>
+<label class="option"><input type="radio" name="age" value="18-24">18–24 ans</label>
+<label class="option"><input type="radio" name="age" value="25-34">25–34 ans</label>
+<label class="option"><input type="radio" name="age" value="35-44">35–44 ans</label>
+<label class="option"><input type="radio" name="age" value="45-54">45–54 ans</label>
+<label class="option"><input type="radio" name="age" value="55+">55 ans ou plus</label></div>
+
+<div class="q"><span class="q-title">Q2. Pratiquez-vous actuellement une activité sportive ?</span>
+<label class="option"><input required type="radio" name="sport" value="plusieurs">Oui, plusieurs fois par semaine</label>
+<label class="option"><input type="radio" name="sport" value="hebdo">Oui, environ une fois par semaine</label>
+<label class="option"><input type="radio" name="sport" value="occasionnel">Oui, occasionnellement</label>
+<label class="option"><input type="radio" name="sport" value="non">Non</label></div>
+
+<div class="q"><span class="q-title">Q3. Êtes-vous actuellement inscrit(e) dans une salle de sport ?</span>
+<label class="option"><input required type="radio" name="inscrit" value="oui">Oui</label>
+<label class="option"><input type="radio" name="inscrit" value="non">Non</label></div>
+
+<div class="q"><span class="q-title">Q4. Avez-vous fréquenté une salle de sport au cours des 12 derniers mois ?</span>
+<label class="option"><input required type="radio" name="freq12m" value="oui">Oui</label>
+<label class="option"><input type="radio" name="freq12m" value="non">Non</label></div>
+
+<div class="q"><span class="q-title">Q5. Si vous étiez inscrit(e) dans une salle de sport, à quelle fréquence pensez-vous la fréquenter ?</span>
+<label class="option"><input required type="radio" name="frequence" value="<1">Moins d'une fois par semaine</label>
+<label class="option"><input type="radio" name="frequence" value="1">1 fois par semaine</label>
+<label class="option"><input type="radio" name="frequence" value="2-3">2 à 3 fois par semaine</label>
+<label class="option"><input type="radio" name="frequence" value="4-5">4 à 5 fois par semaine</label>
+<label class="option"><input type="radio" name="frequence" value="5+">Plus de 5 fois par semaine</label></div>
+</section>
+
+<section class="card">
+<h2>2. L'offre</h2>
+<p class="muted">Une des deux versions de l'offre vous a été attribuée aléatoirement.</p>
+<div id="offer" class="offer"></div>
+</section>
+
+<section class="card">
+<h2>3. La mesure — Van Westendorp</h2>
+<p>Pour l'abonnement mensuel qui vient de vous être décrit, indiquez un montant en euros pour chaque question.</p>
+<div class="q"><span class="q-title">VW1. À partir de quel prix par mois considéreriez-vous cette offre comme <strong>tellement bon marché</strong> que vous douteriez de la qualité de la salle ?</span><input required min="0" step="0.01" type="number" name="vw1" placeholder="€"></div>
+<div class="q"><span class="q-title">VW2. À partir de quel prix par mois considéreriez-vous cette offre comme une <strong>bonne affaire</strong> ?</span><input required min="0" step="0.01" type="number" name="vw2" placeholder="€"></div>
+<div class="q"><span class="q-title">VW3. À partir de quel prix par mois considéreriez-vous cette offre comme <strong>chère</strong>, mais vous l'envisageriez quand même ?</span><input required min="0" step="0.01" type="number" name="vw3" placeholder="€"></div>
+<div class="q"><span class="q-title">VW4. À partir de quel prix par mois considéreriez-vous cette offre comme <strong>trop chère</strong> pour vous y inscrire ?</span><input required min="0" step="0.01" type="number" name="vw4" placeholder="€"></div>
+</section>
+
+<section class="card">
+<h2>4. Gabor-Granger</h2>
+<p><strong>Pour chacune des propositions suivantes, indiquez si vous envisageriez de souscrire à cette offre à ce prix.</strong></p>
+<div class="grid">
+<div class="head">Prix mensuel</div><div class="head">Oui</div><div class="head">Non</div>
+<div>20 € / mois</div><label><input required type="radio" name="gg20" value="Oui"></label><label><input type="radio" name="gg20" value="Non"></label>
+<div>25 € / mois</div><label><input required type="radio" name="gg25" value="Oui"></label><label><input type="radio" name="gg25" value="Non"></label>
+<div>30 € / mois</div><label><input required type="radio" name="gg30" value="Oui"></label><label><input type="radio" name="gg30" value="Non"></label>
+<div>35 € / mois</div><label><input required type="radio" name="gg35" value="Oui"></label><label><input type="radio" name="gg35" value="Non"></label>
+<div>40 € / mois</div><label><input required type="radio" name="gg40" value="Oui"></label><label><input type="radio" name="gg40" value="Non"></label>
+<div>45 € / mois</div><label><input required type="radio" name="gg45" value="Oui"></label><label><input type="radio" name="gg45" value="Non"></label>
+</div>
+</section>
+
+<section class="card">
+<h2>5. Le contrôle</h2>
+<p>Pour nous assurer de la clarté de notre description, l'offre qui vous a été présentée incluait-elle l'accès aux cours collectifs avec coach ?</p>
+<label class="option"><input required type="radio" name="controle" value="Oui">Oui</label>
+<label class="option"><input type="radio" name="controle" value="Non">Non</label>
+<label class="option"><input type="radio" name="controle" value="Je ne m'en souviens pas">Je ne m'en souviens pas</label>
+</section>
+
+<section class="card">
+<h2>6. La perception</h2>
+<p>Pour chacune des affirmations suivantes, indiquez votre niveau d'accord.</p>
+<p class="muted">1 = Pas du tout d'accord · 2 = Plutôt pas d'accord · 3 = Ni d'accord ni pas d'accord · 4 = Plutôt d'accord · 5 = Tout à fait d'accord</p>
+<div id="likerts"></div>
+</section>
+
+<section class="card">
+<h2>7. Votre profil</h2>
+<div class="q"><span class="q-title">P1. Quelle est votre situation actuelle ?</span>
+<label class="option"><input required type="radio" name="statut" value="Etudiant">Étudiant(e)</label>
+<label class="option"><input type="radio" name="statut" value="Salarie">Salarié(e)</label>
+<label class="option"><input type="radio" name="statut" value="Independant">Travailleur indépendant</label>
+<label class="option"><input type="radio" name="statut" value="Sans activité">Sans activité professionnelle</label>
+<label class="option"><input type="radio" name="statut" value="Retraite">Retraité(e)</label>
+<label class="option"><input type="radio" name="statut" value="Autre">Autre</label></div>
+
+<div class="q"><span class="q-title">P2. Quel budget consacrez-vous actuellement chaque mois à vos activités sportives ?</span>
+<label class="option"><input required type="radio" name="budget" value="0">0 €</label>
+<label class="option"><input type="radio" name="budget" value="<20">Moins de 20 €</label>
+<label class="option"><input type="radio" name="budget" value="20-30">20–30 €</label>
+<label class="option"><input type="radio" name="budget" value="31-40">31–40 €</label>
+<label class="option"><input type="radio" name="budget" value="41-50">41–50 €</label>
+<label class="option"><input type="radio" name="budget" value="50+">Plus de 50 €</label></div>
+
+<div id="error" class="error"></div>
+<button id="submit" type="submit">Envoyer mes réponses</button>
+</section>
+</form>
+
+<section id="thanks" class="card hidden">
+<h2>Merci pour votre participation !</h2>
+<p>Vos réponses ont bien été enregistrées. Elles sont anonymes et seront utilisées uniquement dans le cadre de notre étude universitaire.</p>
+</section>
+</main>
+
+<script>
+// =============================
+// À MODIFIER APRÈS LE DÉPLOIEMENT GOOGLE APPS SCRIPT
+// =============================
+const APPS_SCRIPT_URL = "COLLE_ICI_L_URL_EXEC";
+
+// Tirage A/B automatique 50/50.
+const version = Math.random() < 0.5 ? "A" : "B";
+
+document.getElementById("offer").innerHTML =
+version === "A"
+? `<ul>
+<li>Accès en illimité aux plateaux de musculation et de cardio-training.</li>
+<li>Matériel haut de gamme.</li>
+<li>Vestiaires individuels et douches incluses.</li>
+</ul>`
+: `<ul>
+<li>Accès en illimité aux plateaux de musculation et de cardio-training.</li>
+<li>Matériel haut de gamme.</li>
+<li>Vestiaires individuels et douches incluses.</li>
+<li><strong>Accès illimité à tous les cours collectifs avec coach (Cross-training, RPM, Pilates).</strong></li>
+</ul>`;
+
+const likertItems = [
+["L1","Cette offre me paraît avoir un bon rapport qualité/prix."],
+["L2","Cette offre me paraît adaptée à mes besoins."],
+["L3","Cette offre me paraît qualitative."],
+["L4","Cette offre correspond à ce que j'attends d'un abonnement à une salle de sport."],
+["L5","Je pourrais envisager de souscrire à cette offre."]
+];
+
+document.getElementById("likerts").innerHTML = likertItems.map(([name,text]) =>
+`<div class="q"><span class="q-title">${name}. ${text}</span>
+<div class="scale">${[1,2,3,4,5].map(n =>
+`<label><input required type="radio" name="${name}" value="${n}">${n}</label>`).join("")}</div></div>`
+).join("");
+
+const form = document.getElementById("survey");
+const submit = document.getElementById("submit");
+const error = document.getElementById("error");
+
+form.addEventListener("submit", async (event) => {
+event.preventDefault();
+error.style.display = "none";
+
+if (!form.checkValidity()) { form.reportValidity(); return; }
+
+if (APPS_SCRIPT_URL.includes("COLLE_ICI")) {
+error.textContent = "L'URL Google Apps Script n'a pas encore été configurée.";
+error.style.display = "block";
+return;
+}
+
+const fd = new FormData(form);
+const vw = ["vw1","vw2","vw3","vw4"].map(k => Number(fd.get(k)));
+
+const payload = {
+timestamp: new Date().toISOString(),
+version,
+age: fd.get("age"),
+sport: fd.get("sport"),
+inscrit: fd.get("inscrit"),
+freq12m: fd.get("freq12m"),
+frequence: fd.get("frequence"),
+vw1: fd.get("vw1"), vw2: fd.get("vw2"), vw3: fd.get("vw3"), vw4: fd.get("vw4"),
+vw_coherent: (vw[0] < vw[1] && vw[1] < vw[2] && vw[2] < vw[3]) ? "Oui" : "Non",
+gg20: fd.get("gg20"), gg25: fd.get("gg25"), gg30: fd.get("gg30"),
+gg35: fd.get("gg35"), gg40: fd.get("gg40"), gg45: fd.get("gg45"),
+controle: fd.get("controle"),
+L1: fd.get("L1"), L2: fd.get("L2"), L3: fd.get("L3"), L4: fd.get("L4"), L5: fd.get("L5"),
+statut: fd.get("statut"), budget: fd.get("budget")
+};
+
+submit.disabled = true;
+submit.textContent = "Envoi en cours…";
+
+try {
+await fetch(APPS_SCRIPT_URL, {
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify(payload)
+});
+form.classList.add("hidden");
+document.getElementById("thanks").classList.remove("hidden");
+window.scrollTo({top:0,behavior:"smooth"});
+} catch (e) {
+submit.disabled = false;
+submit.textContent = "Envoyer mes réponses";
+error.textContent = "Impossible d'envoyer la réponse. Vérifiez votre connexion et réessayez.";
+error.style.display = "block";
+}
+});
+</script>
+</body>
+</html>
