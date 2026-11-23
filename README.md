@@ -15,6 +15,7 @@ L'objectif est d'étudier l'effet de la présence des cours collectifs sur la pe
 ## Accès au projet
 
 - **Questionnaire source :** [index.html](./index.html)
+- **Script de collecte Apps Script :** [Code.gs](./Code.gs)
 - **Dictionnaire des variables :** [documentation/dictionnaire-variables.md](./documentation/dictionnaire-variables.md)
 - **Protocole de l'enquête :** [documentation/protocole.md](./documentation/protocole.md)
 - **Vérifications techniques :** [documentation/verification-technique.md](./documentation/verification-technique.md)
@@ -49,11 +50,21 @@ Le questionnaire recueille des informations sur la pratique sportive, la compré
 - **Collecte :** requête HTTP vers une application Web Google Apps Script.
 - **Stockage :** Google Sheets.
 
-Le navigateur transmet un objet JSON comprenant les réponses et la version attribuée. Le script Apps Script reçoit ces données et les inscrit dans la feuille de calcul. Le code actuel utilise `fetch` en mode `no-cors` : le navigateur ne peut donc pas confirmer à lui seul que l'écriture dans Sheets a réussi. Voir les [points de vigilance techniques](./documentation/verification-technique.md).
+Le navigateur transmet un objet JSON comprenant les réponses et la version attribuée. Le script `Code.gs` valide les champs, vérifie les modalités et les valeurs numériques, puis ajoute la ligne à l'onglet `Réponses`. Un verrou de script limite les collisions lors de soumissions simultanées.
 
-### À propos du script Apps Script
+**Limite de confirmation :** le questionnaire utilise `fetch` en mode `no-cors`. Le navigateur ne peut donc pas lire la réponse JSON du serveur ni confirmer à lui seul que l'écriture dans Sheets a réussi. Le message de remerciement affiché côté questionnaire ne constitue pas une preuve de sauvegarde. Voir les [points de vigilance techniques](./documentation/verification-technique.md).
 
-Le fichier serveur `Code.gs` n'est pas présent dans cette version publique du dépôt. L'URL de déploiement est configurée dans le questionnaire, mais cela ne permet pas de reconstituer le code source du serveur. Le script doit être ajouté séparément si sa publication et sa diffusion sont autorisées. Ne publiez jamais de mot de passe, jeton ou identifiant confidentiel.
+### Déploiement Apps Script
+
+Le fichier [`Code.gs`](./Code.gs) contient le code serveur correspondant aux champs du questionnaire. Pour le déployer :
+1. ouvrir le projet Apps Script lié au classeur Google Sheets ;
+2. remplacer le contenu du fichier serveur par le contenu de `Code.gs` ;
+3. enregistrer le projet ;
+4. déployer ou mettre à jour le déploiement en tant qu'application Web ;
+5. vérifier les paramètres d'accès attendus pour la collecte ;
+6. effectuer une soumission de test et vérifier manuellement l'apparition d'une ligne dans l'onglet `Réponses`.
+
+Ne modifiez pas l'URL de déploiement dans `index.html` si le déploiement existant est conservé. Si vous créez un nouveau déploiement, remplacez l'URL par celle fournie par Apps Script.
 
 ## Structure du dépôt
 
@@ -61,6 +72,7 @@ Le fichier serveur `Code.gs` n'est pas présent dans cette version publique du d
 fitness-park-questionnaire/
 ├── README.md
 ├── index.html
+├── Code.gs
 ├── documentation/
 │   ├── protocole.md
 │   ├── dictionnaire-variables.md
@@ -78,6 +90,8 @@ Avant toute nouvelle collecte, vérifier :
 4. que les noms et l'ordre des colonnes correspondent au dictionnaire ;
 5. que les réponses de test sont identifiées et retirées du jeu d'analyse final ;
 6. que le nombre de réponses retenues est cohérent entre l'export, les analyses et le site de restitution.
+
+Le script serveur refuse les champs manquants, les modalités inconnues, les montants négatifs ou manifestement excessifs, les notes de Likert hors de 1 à 5 et les indicateurs de cohérence incorrects. Il vérifie également que les en-têtes de la feuille correspondent au format attendu avant d'ajouter une réponse. Il ne supprime ni ne déduplique automatiquement les réponses.
 
 Le tirage A/B est probabiliste et ne garantit pas un partage exactement égal entre les deux groupes.
 
