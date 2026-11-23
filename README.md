@@ -17,6 +17,7 @@ L'objectif est d'étudier l'effet de la présence des cours collectifs sur la pe
 - **Questionnaire source :** [index.html](./index.html)
 - **Dictionnaire des variables :** [documentation/dictionnaire-variables.md](./documentation/dictionnaire-variables.md)
 - **Protocole de l'enquête :** [documentation/protocole.md](./documentation/protocole.md)
+- **Vérifications techniques :** [documentation/verification-technique.md](./documentation/verification-technique.md)
 - **Informations sur les données :** [data/README.md](./data/README.md)
 - **Site de présentation et d'analyse stratégique :** https://flame-cycle-7f1f8.ship.place/#resultats
 - **Consignes du cours :** https://prix.iae-mod.fr/index.html
@@ -48,7 +49,7 @@ Le questionnaire recueille des informations sur la pratique sportive, la compré
 - **Collecte :** requête HTTP vers une application Web Google Apps Script.
 - **Stockage :** Google Sheets.
 
-Le navigateur transmet un objet JSON comprenant les réponses et la version attribuée. Le script Apps Script reçoit ces données et les inscrit dans la feuille de calcul.
+Le navigateur transmet un objet JSON comprenant les réponses et la version attribuée. Le script Apps Script reçoit ces données et les inscrit dans la feuille de calcul. Le code actuel utilise `fetch` en mode `no-cors` : le navigateur ne peut donc pas confirmer à lui seul que l'écriture dans Sheets a réussi. Voir les [points de vigilance techniques](./documentation/verification-technique.md).
 
 ### À propos du script Apps Script
 
@@ -62,7 +63,8 @@ fitness-park-questionnaire/
 ├── index.html
 ├── documentation/
 │   ├── protocole.md
-│   └── dictionnaire-variables.md
+│   ├── dictionnaire-variables.md
+│   └── verification-technique.md
 └── data/
     └── README.md
 ```
