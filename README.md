@@ -20,6 +20,7 @@ L'objectif est d'étudier l'effet de la présence des cours collectifs sur la pe
 - **Protocole de l'enquête :** [documentation/protocole.md](./documentation/protocole.md)
 - **Vérifications techniques :** [documentation/verification-technique.md](./documentation/verification-technique.md)
 - **Informations sur les données :** [data/README.md](./data/README.md)
+- **Résultats recalculés sur 120 réponses :** [documentation/resultats-analyse.md](./documentation/resultats-analyse.md)
 - **Site de présentation et d'analyse stratégique :** https://flame-cycle-7f1f8.ship.place/#resultats
 - **Consignes du cours :** https://prix.iae-mod.fr/index.html
 
@@ -112,3 +113,7 @@ Aucun export individuel de réponses n'est publié dans ce dépôt à ce stade. 
 ## Licence et réutilisation
 
 Ce dépôt est un support de travail universitaire. Aucune licence de réutilisation n'est déclarée pour le moment. Pour toute réutilisation du code ou des contenus, contacter les auteurs du projet.
+
+## Dernier export analysé
+
+L'export transmis le 24 novembre 2026 contient 120 réponses (64 en A et 56 en B). Les résultats agrégés et les limites d'interprétation sont documentés dans [documentation/resultats-analyse.md](./documentation/resultats-analyse.md). Les réponses individuelles ne sont pas publiées dans le dépôt.
