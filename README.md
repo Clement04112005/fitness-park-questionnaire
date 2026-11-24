@@ -21,7 +21,7 @@ L'objectif est d'étudier l'effet de la présence des cours collectifs sur la pe
 - **Vérifications techniques :** [documentation/verification-technique.md](./documentation/verification-technique.md)
 - **Informations sur les données :** [data/README.md](./data/README.md)
 - **Résultats recalculés sur 120 réponses :** [documentation/resultats-analyse.md](./documentation/resultats-analyse.md)
-- **Site de présentation et d'analyse stratégique :** https://flame-cycle-7f1f8.ship.place/#resultats
+- **Site de présentation et d'analyse stratégique :** https://gamy-guppy-j1abu.ship.place/resultats.html
 - **Consignes du cours :** https://prix.iae-mod.fr/index.html
 
 ## Méthodes mobilisées
