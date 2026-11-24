@@ -30,7 +30,19 @@ Le temps annoncé aux répondants est de 4 à 5 minutes.
 
 Le formulaire construit un objet contenant l'horodatage, la version attribuée et les réponses. Il l'envoie à l'application Web Google Apps Script configurée dans `index.html`. Le script côté serveur est responsable de l'écriture dans Google Sheets.
 
-Le questionnaire calcule également `vw_coherent` : la réponse vaut « Oui » lorsque les quatre seuils respectent strictement `vw1 < vw2 < vw3 < vw4`, sinon « Non ». Ce marqueur ne supprime pas les observations.
+Le questionnaire calcule également `vw_coherent` : la réponse vaut « Oui » lorsque les quatre seuils respectent strictement `vw1 < vw2 < vw3 < vw4`, sinon « Non ».
+
+### Nettoyage final
+
+L'export comporte **120 réponses brutes**. Après application des règles de nettoyage, **110 observations sont retenues : 58 en version A et 52 en version B**.
+
+Les dix retraits documentés sont :
+- un essai ;
+- un double envoi ;
+- cinq séries de seuils Van Westendorp incohérentes ;
+- trois séries d'intentions Gabor-Granger non monotones.
+
+La question de contrôle de perception ne sert pas à exclure des répondants. Les résultats finaux sont présentés dans [le rapport d'analyse](./resultats-analyse.md).
 
 ## Précautions d'analyse
 
