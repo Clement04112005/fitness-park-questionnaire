@@ -20,8 +20,8 @@ L'objectif est d'étudier l'effet de la présence des cours collectifs sur la pe
 - **Protocole de l'enquête :** [documentation/protocole.md](./documentation/protocole.md)
 - **Vérifications techniques :** [documentation/verification-technique.md](./documentation/verification-technique.md)
 - **Informations sur les données :** [data/README.md](./data/README.md)
-- **Résultats recalculés sur 120 réponses :** [documentation/resultats-analyse.md](./documentation/resultats-analyse.md)
-- **Site de présentation et d'analyse stratégique :** https://gamy-guppy-j1abu.ship.place/resultats.html
+- **Résultats finaux (110 observations retenues sur 120 réponses) :** [documentation/resultats-analyse.md](./documentation/resultats-analyse.md)
+- **Site de présentation et d'analyse stratégique :** https://gamy-guppy-j1abu.ship.place/index.html
 - **Consignes du cours :** https://prix.iae-mod.fr/index.html
 
 ## Méthodes mobilisées
@@ -34,7 +34,7 @@ Le navigateur attribue aléatoirement une version A ou B à chaque participant, 
 
 Quatre seuils sont demandés : `vw1` (prix tellement bas qu'il fait douter de la qualité), `vw2` (bonne affaire), `vw3` (cher mais envisageable) et `vw4` (trop cher).
 
-La variable `vw_coherent` signale si les montants respectent l'ordre strict attendu : `vw1 < vw2 < vw3 < vw4`. Les réponses incohérentes ne sont pas supprimées automatiquement ; elles peuvent être examinées séparément.
+La variable `vw_coherent` signale si les montants respectent l'ordre strict attendu : `vw1 < vw2 < vw3 < vw4`. Les réponses incohérentes sont examinées dans le processus de nettoyage documenté dans l'analyse finale.
 
 ### Gabor-Granger — intention d'achat selon le prix
 
@@ -94,13 +94,13 @@ Avant toute nouvelle collecte, vérifier :
 
 Le script serveur refuse les champs manquants, les modalités inconnues, les montants négatifs ou manifestement excessifs, les notes de Likert hors de 1 à 5 et les indicateurs de cohérence incorrects. Il vérifie également que les en-têtes de la feuille correspondent au format attendu avant d'ajouter une réponse. Il ne supprime ni ne déduplique automatiquement les réponses.
 
-Le tirage A/B est probabiliste et ne garantit pas un partage exactement égal entre les deux groupes.
+Le tirage A/B est probabiliste et ne garantit pas un partage exactement égal.
 
 ## Données personnelles et confidentialité
 
 Le questionnaire est conçu pour ne pas demander de nom, prénom, adresse e-mail ou numéro de téléphone. Les réponses restent néanmoins des données d'enquête : leur export doit être contrôlé et anonymisé avant toute diffusion publique.
 
-Aucun export individuel de réponses n'est publié dans ce dépôt à ce stade. Voir [data/README.md](./data/README.md).
+Aucun export individuel de réponses n'est publié dans ce dépôt. Voir [data/README.md](./data/README.md).
 
 ## Limites méthodologiques
 
@@ -116,4 +116,4 @@ Ce dépôt est un support de travail universitaire. Aucune licence de réutilisa
 
 ## Dernier export analysé
 
-L'export transmis le 24 novembre 2026 contient 120 réponses (64 en A et 56 en B). Les résultats agrégés et les limites d'interprétation sont documentés dans [documentation/resultats-analyse.md](./documentation/resultats-analyse.md). Les réponses individuelles ne sont pas publiées dans le dépôt.
+L'export final contient **120 réponses brutes**. Après application des règles de nettoyage exposées dans le protocole d'analyse, **110 observations sont retenues : 58 en version A et 52 en version B**. Les 10 exclusions comprennent un essai, un double envoi, cinq séries de seuils Van Westendorp incohérentes et trois séries d'intentions Gabor-Granger non monotones. Les résultats et les limites d'interprétation sont documentés dans [documentation/resultats-analyse.md](./documentation/resultats-analyse.md).
