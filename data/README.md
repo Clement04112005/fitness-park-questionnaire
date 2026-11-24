@@ -1,8 +1,10 @@
 # Données de l'enquête
 
-L'export analysé le 24 novembre 2026 contient **120 réponses individuelles** (64 en version A et 56 en version B), recueillies du 12 au 21 octobre 2026.
+L'export final comporte **120 réponses brutes**. Après nettoyage, **110 observations sont retenues** pour l'analyse : **58 en version A** et **52 en version B**.
 
-Les réponses individuelles ne sont pas publiées dans ce dépôt. Elles ont été transmises séparément pour l'analyse ; ce dossier contient uniquement la documentation des résultats agrégés. Voir [le rapport d'analyse](../documentation/resultats-analyse.md).
+Les dix exclusions documentées sont : un essai, un double envoi, cinq séries de seuils Van Westendorp incohérentes et trois séries d'intentions Gabor-Granger non monotones. La question de contrôle de perception n'est pas utilisée pour exclure des répondants.
+
+Les réponses individuelles ne sont pas publiées dans ce dépôt. Elles ont été transmises séparément pour l'analyse ; ce dossier contient uniquement la documentation des résultats agrégés. Voir [le rapport d'analyse final](../documentation/resultats-analyse.md).
 
 Avant tout partage ou ajout d'un export individuel ici :
 
